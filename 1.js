@@ -21,17 +21,8 @@ func = () => {
     self.innerHTML = str;
 }
 
-function sleep(delay) {
-    let start = new Date().getTime();
-    while(new Date().getTime() - start < delay) {
-    }
-}
-cnt = 100;
-// while(cnt--) {
     setInterval(func,1000);
-    // delInfo();
-    // setInterval(delInfo,1000);
-// }
+
 
 
 
