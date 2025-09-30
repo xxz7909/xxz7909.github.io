@@ -1,12 +1,18 @@
-﻿const startTime = new Date("2025-01-01T00:00:00");
-const endTime = new Date("2026-01-01T00:00:00");
+﻿const now = new Date();
+const currentYear = now.getFullYear();
+const startTime = new Date(currentYear, 0, 1, 0, 0, 0);
+const endTime = new Date(currentYear + 1, 0, 1, 0, 0, 0);
 
 const totalMilliseconds = endTime.getTime() - startTime.getTime();
 const infoElement = document.getElementById("info");
+const headingElement = document.getElementById("heading");
+
+if (headingElement) {
+    headingElement.textContent = `${currentYear} 年已经过去`;
+}
 
 const getProgressPercent = () => {
-    const now = new Date().getTime();
-    const elapsed = now - startTime.getTime();
+    const elapsed = Date.now() - startTime.getTime();
     return (elapsed / totalMilliseconds) * 100;
 };
 
