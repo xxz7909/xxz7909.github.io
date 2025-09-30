@@ -1,30 +1,20 @@
-let startTime = new Date("2025-01-01:00:00:00");
-let endTime = new Date("2026-01-01:00:00:00");
+﻿const startTime = new Date("2025-01-01T00:00:00");
+const endTime = new Date("2026-01-01T00:00:00");
 
-const getSumTime = () => {
-    return endTime.getTime() - startTime.getTime();
-}
+const totalMilliseconds = endTime.getTime() - startTime.getTime();
+const infoElement = document.getElementById("info");
 
-const getNowTime = () => {
-    let date = new Date();
-    return date.getTime() - startTime.getTime();
-}
+const getProgressPercent = () => {
+    const now = new Date().getTime();
+    const elapsed = now - startTime.getTime();
+    return (elapsed / totalMilliseconds) * 100;
+};
 
-const getPercent = () => {
-    return getNowTime() / getSumTime() * 100;
-}
+const renderProgress = () => {
+    const percent = getProgressPercent();
+    const clamped = Math.min(Math.max(percent, 0), 100);
+    infoElement.textContent = `${clamped.toFixed(6)}%`;
+};
 
-
-func = () => {
-    str = getPercent().toString();
-    let self = document.getElementById('info');
-    self.innerHTML = str;
-}
-
-    setInterval(func,1000);
-
-
-
-
-
-
+renderProgress();
+setInterval(renderProgress, 1000);
